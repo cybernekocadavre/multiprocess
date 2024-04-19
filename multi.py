@@ -16,13 +16,14 @@ def calculate_element(i, j, matrix1, matrix2, result, rows):
 
 def multiply_matrices(matrix1, matrix2, result, num_processes):
     #Умножение матриц с мультипроцессорными вычислениями
-    
     rows = len(matrix1)
     cols = len(matrix2[0])
+    
     with Pool(num_processes) as pool:
-        for i in range(rows):
-            for j in range(cols):
-                pool.apply_async(calculate_element, args=(i, j, matrix1, matrix2, result, rows))
+        for i in range(len(X)):
+            for j in range(len(Y[0])):
+                for k in range(len(Y)):
+                    result[i][j] += X[i][k] * Y[k][j]
         pool.close()
         pool.join()
 
