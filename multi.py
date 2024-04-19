@@ -18,14 +18,18 @@ def multiply_matrices(matrix1, matrix2, result, num_processes):
     #Умножение матриц с мультипроцессорными вычислениями
     rows = len(matrix1)
     cols = len(matrix2[0])
-    
-    with Pool(num_processes) as pool:
-        for i in range(len(matrix1)):
-            for j in range(len(matrix2[0])):
-                for k in range(len(matrix2)):
-                    result[i][j] += matrix1[i][k] * matrix2[k][j]
-        pool.close()
-        pool.join()
+
+    processes = []
+
+    for i in range(rows):
+        for j in range(cols):
+            process = Process(target=calculate_element, args=(i, j, matrix1, matrix2, result, len(matrix2)))
+            processes.append(process)
+            process.start()
+
+    for process in processes:
+        process.join()
+
 
 def write_matrix_to_file(matrix, filename):
     
