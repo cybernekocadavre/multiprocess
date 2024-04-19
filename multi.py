@@ -23,7 +23,7 @@ def multiply_matrices(matrix1, matrix2, result, num_processes):
         for i in range(len(X)):
             for j in range(len(Y[0])):
                 for k in range(len(Y)):
-                    result[i][j] += X[i][k] * Y[k][j]
+                    result[i][j] += matrix1[i][k] * matrix2[k][j]
         pool.close()
         pool.join()
 
