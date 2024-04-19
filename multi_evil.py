@@ -77,5 +77,14 @@ if __name__ == "__main__":
     # Преобразование результата в матрицу
     result_matrix = [[result[i * matrix_size + j] for j in range(matrix_size)] for i in range(matrix_size)]
 
+    print("Matrix 1:")
+    for row in matrix1:
+        print(row)
+    
+    print("\nMatrix 2:")
+    for row in matrix2:
+        print(row)
+    
+
     # Запись матрицы результата в файл
     write_matrix_to_file(result_matrix, "result_matrix_evil.txt")
