@@ -32,6 +32,11 @@ def read_matrix_from_file(filename):
         matrix = [[int(x) for x in line.split()] for line in file]
     return matrix
 
+def write_matrix_to_file(matrix, filename):
+    with open(filename, 'w') as file:
+        for row in matrix:
+            file.write(' '.join(map(str, row)) + '\n')
+
 if __name__ == "__main__":
     # Чтение матриц из файлов
     matrix1 = read_matrix_from_file("matrix1.txt")
