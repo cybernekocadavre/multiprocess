@@ -78,4 +78,4 @@ if __name__ == "__main__":
     result_matrix = [[result[i * matrix_size + j] for j in range(matrix_size)] for i in range(matrix_size)]
 
     # Запись матрицы результата в файл
-    write_matrix_to_file(result_matrix, "result_matrix.txt")
+    write_matrix_to_file(result_matrix, "result_matrix_evil.txt")
