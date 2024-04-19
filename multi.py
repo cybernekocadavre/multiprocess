@@ -27,6 +27,11 @@ def multiply_matrices(matrix1, matrix2, result, num_processes):
     for process in processes:
         process.join()
 
+def write_matrix_to_file(matrix, filename):
+    with open(filename, 'w') as file:
+        for row in matrix:
+            file.write(' '.join(map(str, row)) + '\n')
+
 if __name__ == "__main__":
     matrix1 = [[1, 2], [3, 4]]
     matrix2 = [[2, 0], [1, 2]]
@@ -41,4 +46,5 @@ if __name__ == "__main__":
     # Преобразование результата в матрицу
     result_matrix = [[result[i * len(matrix2[0]) + j] for j in range(len(matrix2[0]))] for i in range(len(matrix1))]
 
-    print(result_matrix)
+    # Запись матрицы результата в файл
+    write_matrix_to_file(result_matrix, "result_matrix.txt")
