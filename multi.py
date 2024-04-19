@@ -3,7 +3,7 @@
 
 # In[ ]:
 
-from multiprocessing import Process, Pool, Array
+from multiprocessing import Process, Array
 
 def calculate_element(i, j, matrix1, matrix2, result, rows):
     # Подсчёт элементов в матрице-результате
@@ -27,14 +27,15 @@ def multiply_matrices(matrix1, matrix2, result, num_processes):
     for process in processes:
         process.join()
 
-def write_matrix_to_file(matrix, filename):
-    with open(filename, 'w') as file:
-        for row in matrix:
-            file.write(' '.join(map(str, row)) + '\n')
+def read_matrix_from_file(filename):
+    with open(filename, 'r') as file:
+        matrix = [[int(x) for x in line.split()] for line in file]
+    return matrix
 
 if __name__ == "__main__":
-    matrix1 = [[1, 2], [3, 4]]
-    matrix2 = [[2, 0], [1, 2]]
+    # Чтение матриц из файлов
+    matrix1 = read_matrix_from_file("matrix1.txt")
+    matrix2 = read_matrix_from_file("matrix2.txt")
 
     # Создание результирующей матрицы
     result = Array('i', [0] * len(matrix1) * len(matrix2[0]))
